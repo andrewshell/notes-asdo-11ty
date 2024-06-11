@@ -1,0 +1,86 @@
+:root {
+  --main-bg-color: #fdfcfb;
+  --main-fg-color: #240b00;
+  --accent-color-1: #ef9a48;
+  --accent-color-2: #d54751;
+  --accent-color-3: #4da394;
+}
+
+body {
+  background-color: var(--main-bg-color);
+  color: var(--main-fg-color);
+  font-family: "IBM Plex Serif", serif;
+  font-weight: 400;
+  font-style: normal;
+  padding: 1em;
+}
+
+pre, code {
+  font-family: "M PLUS Code Latin", monospace;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  font-variation-settings:
+    "wdth" 100;
+}
+
+pre {
+  overflow-x: auto;
+  max-width: 98%;
+  padding: 0.5em;
+}
+
+a {
+  color: var(--accent-color-3);
+}
+
+a:active, a:hover, a:visited {
+  color: var(--accent-color-2);
+}
+
+h1 {
+  font-weight: 700;
+  border-bottom: 4px solid var(--main-fg-color);
+}
+
+h2 {
+  font-weight: 700;
+  border-bottom: 3px solid var(--main-fg-color);
+}
+
+h3 {
+  font-weight: 700;
+  border-bottom: 2px solid var(--main-fg-color);
+}
+
+nav {
+  white-space: nowrap;
+}
+
+/* Small devices such as large phones (640px and up) */
+@media only screen and (min-width: 640px) {
+
+}
+
+/* Medium devices such as tablets (768px and up) */
+@media only screen and (min-width: 768px) {
+
+}
+
+/* Large devices such as laptops (1024px and up) */
+@media only screen and (min-width: 1024px) {
+  body {
+    display: grid;
+    grid-column-gap: 1em;
+    grid-template-columns: 65vw 35vw;
+  }
+
+  header {
+    grid-column: 1 / span 2;
+  }
+}
+
+/* Largest devices such as desktops (1280px and up) */
+@media only screen and (min-width: 1280px) {
+
+}

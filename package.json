@@ -1,0 +1,27 @@
+{
+  "name": "notes-asdo-11ty",
+  "version": "1.0.0",
+  "description": "Collection of notes by Andrew Shell published as an 11ty website",
+  "type": "module",
+  "engines": {
+    "node": ">= 18"
+  },
+  "scripts": {
+    "check-links": "npx check-html-links _site",
+    "clean": "rm -rf _site && rm -rf .cache",
+    "build": "npx @11ty/eleventy",
+    "start": "npx @11ty/eleventy --serve --quiet"
+  },
+  "private": true,
+  "devDependencies": {
+    "@11ty/eleventy": "3.0.0-alpha.10",
+    "@eslint/js": "^9.3.0",
+    "dotenv": "^16.4.5"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/andrewshell/notes-asdo-11ty.git"
+  },
+  "author": "Andrew Shell <andrew@andrewshell.org>",
+  "license": "MIT"
+}
