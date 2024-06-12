@@ -1,0 +1,28 @@
+---
+layout: layouts/base.njk
+---
+<header class="global-header">
+  <a href="/">{{ metadata.title }}</a>
+</header>
+<main>
+  <article>
+    <header>
+      <h1>{{ title }}</h1>
+    </header>
+    {{ content | safe }}
+  </article>
+</main>
+{% set backlinks = collections.notes | links_to(page.url) %}
+{% set backlinks_count = backlinks | length %}
+{% if backlinks_count > 0 %}
+<aside id="backlinks">
+  <h3>Backlinks</h3>
+  <ul>
+    {%- for post in backlinks -%}
+      <li>
+        <a href="{{ post.url }}">{{ post.data.title }}</a>
+      </li>
+    {%- endfor -%}
+  </ul>
+</aside>
+{% endif %}

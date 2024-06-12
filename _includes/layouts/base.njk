@@ -1,38 +1,19 @@
----
-title: Andrew Shell's Notes
-subtitle: A wiki style digital garden.
----
 <!doctype html>
 <html lang="en">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ title }}</title>
+    <title>{{ title or metadata.title }}</title>
 
     {%- css %}{% include "public/css/fonts.css" %}{% endcss %}
     {%- css %}{% include "public/css/normalize.css" %}{% endcss %}
     {%- css %}{% include "public/css/style.css" %}{% endcss %}
+    {%- css %}{% include "node_modules/prismjs/themes/prism-tomorrow.css" %}{% endcss %}
     <link rel="stylesheet" href="{% getBundleFileUrl "css" %}">
   </head>
   <body>
-    <header>
-      <h1>{{ title }}</h1>
-      <div class="">{{ subtitle }}</div>
-    </header>
-    <main>
+    <div class="global-wrapper">
       {{ content | safe }}
-    </main>
-    <nav>
-      <ol>
-        <li><a href="#">01.00 Personal Development</a></li>
-        <li><a href="#">01.00 Personal Development</a></li>
-        <li><a href="#">01.00 Personal Development</a></li>
-        <li><a href="#">01.00 Personal Development</a></li>
-        <li><a href="#">01.00 Personal Development</a></li>
-        <li><a href="#">01.00 Personal Development</a></li>
-        <li><a href="#">01.00 Personal Development</a></li>
-        <li><a href="#">01.00 Personal Development</a></li>
-      </ol>
-    </nav>
+    </div>
   </body>
 </html>

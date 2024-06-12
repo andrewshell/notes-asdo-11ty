@@ -1,0 +1,5 @@
+{
+	"tags": ["notes"],
+	"layout": "layouts/notes.njk",
+  "date": "git Last Modified"
+}

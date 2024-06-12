@@ -1,0 +1,35 @@
+---
+permalink: /rss.xml
+numberOfLatestPostsToShow: 10
+eleventyExcludeFromCollections: true
+---
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:source="http://source.scripting.com/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+<channel>
+	<title>{{ metadata.title }}</title>
+	<link>{{ metadata.url | addPathPrefixToFullUrl }}</link>
+	<pubDate>{{ collections.notes | getNewestCollectionItemDate | dateToRfc822 }}</pubDate>
+	<generator>{{ eleventy.generator }}</generator>
+	<docs>https://cyber.harvard.edu/rss/rss.html</docs>
+	<lastBuildDate>{{ collections.notes | getNewestCollectionItemDate | dateToRfc822 }}</lastBuildDate>
+	<cloud domain="rpc.rsscloud.io" port="5337" path="/pleaseNotify" registerProcedure="" protocol="http-post"/>
+	<source:cloud>https://rpc.rsscloud.io/pleaseNotify</source:cloud>
+	<source:account service="twitter">andrewshell</source:account>
+	<source:account service="github">andrewshell</source:account>
+	{% set postsCount = collections.notes | length %}
+	{% set latestPostsCount = postsCount | min(numberOfLatestPostsToShow) %}
+	{% set postslist = collections.notes | head(-1 * numberOfLatestPostsToShow) %}
+	{%- for post in postslist | reverse %}
+	{% set absolutePostUrl %}{{ post.url | htmlBaseUrl(metadata.url) }}{% endset %}
+	<item>
+		<title>{{ post.data.title }}</title>
+		<description>{{ post.content | striptags(true) | truncate(280) }}</description>
+		<link>{{ absolutePostUrl }}</link>
+		<guid isPermaLink="false">{{ absolutePostUrl }}</guid>
+		<pubDate>{{ post.date | dateToRfc822 }}</pubDate>
+		<content:encoded>{{ post.content | transformWithHtmlBase(absolutePostUrl, post.url) }}</content:encoded>
+		<source:markdown>{{ post.rawInput }}</source:markdown>
+	</item>
+	{%- endfor %}
+</channel>
+</rss>
