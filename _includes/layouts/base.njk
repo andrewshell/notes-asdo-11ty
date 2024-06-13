@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ title or metadata.title }}</title>
 
-    {%- css %}{% include "public/css/fonts.css" %}{% endcss %}
     {%- css %}{% include "public/css/normalize.css" %}{% endcss %}
     {%- css %}{% include "public/css/style.css" %}{% endcss %}
     {%- css %}{% include "node_modules/prismjs/themes/prism-tomorrow.css" %}{% endcss %}
@@ -14,6 +13,13 @@
   <body>
     <div class="global-wrapper">
       {{ content | safe }}
+      <footer class="global-footer">
+        <p>&copy; {{ year }}, Built with <a href="https://www.11ty.dev/">11ty</a></p>
+        <ul class="hlist">
+          <li><strong>Page:</strong></li>
+          <li><a href="https://github.com/andrewshell/notes-asdo-11ty/commits/master/{{ page.inputPath }}">History</a></li>
+        </ul>
+      </footer>
     </div>
   </body>
 </html>

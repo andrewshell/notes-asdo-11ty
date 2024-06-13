@@ -6,6 +6,8 @@ import rssPlugin from "@11ty/eleventy-plugin-rss";
 import { EleventyHtmlBasePlugin } from "@11ty/eleventy";
 
 export default async function (eleventyConfig) {
+  eleventyConfig.addGlobalData('year', new Date().getFullYear());
+
   eleventyConfig.addBundle("css");
 
   eleventyConfig.addPlugin(pluginBacklinks);
