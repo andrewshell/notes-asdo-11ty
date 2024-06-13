@@ -1,25 +1,52 @@
 <!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ title or metadata.title }}</title>
+<html lang="{{ metadata.language }}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>{{ title or metadata.title }}</title>
+  <meta name="description" content="{{ description or metadata.description }}">
+  {% if published === false %}<meta name="robots" content="noindex"/>{% endif %}
+  {% set absolutePostUrl %}{{ page.url | htmlBaseUrl(metadata.url) }}{% endset %}
 
-    {%- css %}{% include "public/css/normalize.css" %}{% endcss %}
-    {%- css %}{% include "public/css/style.css" %}{% endcss %}
-    {%- css %}{% include "node_modules/prismjs/themes/prism-tomorrow.css" %}{% endcss %}
-    <link rel="stylesheet" href="{% getBundleFileUrl "css" %}">
-  </head>
-  <body>
-    <div class="global-wrapper">
-      {{ content | safe }}
-      <footer class="global-footer">
-        <p>&copy; {{ year }}, Built with <a href="https://www.11ty.dev/">11ty</a></p>
-        <ul class="hlist">
-          <li><strong>Page:</strong></li>
-          <li><a href="https://github.com/andrewshell/notes-asdo-11ty/commits/master/{{ page.inputPath }}">History</a></li>
-        </ul>
-      </footer>
-    </div>
-  </body>
+  <link rel="alternate" href="/rss.xml" type="application/rss+xml" title="{{ metadata.title }}">
+
+  <meta name="generator" content="{{ eleventy.generator }}">
+  {% favicons 'public/img/gatsby-icon.png', appleIconBgColor='#fff' %}
+
+  {%- css %}{% include "public/css/normalize.css" %}{% endcss %}
+  {%- css %}{% include "public/css/style.css" %}{% endcss %}
+  {%- css %}{% include "node_modules/prismjs/themes/prism-tomorrow.css" %}{% endcss %}
+
+  <link rel="stylesheet" href="{% getBundleFileUrl "css" %}">
+  <link rel=“canonical” href=“{{ absolutePostUrl }}” />
+</head>
+<body>
+<div class="global-wrapper" itemscope itemtype="{{ pagetype or 'https://schema.org/WebPage' }}">
+<header class="global-header">
+{% if fullHeader %}
+<h1 class="main-heading">
+  <a href="/">{{ metadata.title }}</a>
+</h1>
+<p>{{ metadata.description }}</p>
+{% else %}
+<a class="header-link-home" href="/">{{ metadata.title }}</a>
+{% endif %}
+</header>
+<main>{{ content | safe }}</main>
+<footer class="global-footer">
+<p>&copy; {{ year }}, Built with <a href="https://www.11ty.dev/">11ty</a></p>
+<ul class="hlist">
+<li><strong>Page:</strong></li>
+<li><a href="https://github.com/andrewshell/notes-asdo-11ty/commits/master/{{ page.inputPath }}">History</a></li>
+<li><a href="https://github.com/andrewshell/notes-asdo-11ty/blob/master/{{ page.inputPath }}">Source</a></li>
+<li><strong>Social:</strong></li>
+<li><a rel="me" href="/rss.xml">RSS</a></li>
+<li><a rel="me" href="https://twitter.com/andrewshell">Twitter</a></li>
+<li><a rel="me" href="https://indieweb.social/@andrewshell">Mastodon</a></li>
+<li><a rel="me" href="https://github.com/andrewshell">GitHub</a></li>
+<li><a rel="me" href="https://gravatar.com/andrewshell">Gravatar</a></li>
+</ul>
+</footer>
+</div>
+</body>
 </html>

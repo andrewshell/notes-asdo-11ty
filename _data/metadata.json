@@ -1,5 +1,15 @@
 {
   "title": "Andrew Shell's Notes",
   "url": "https://notes.andrewshell.org/",
-  "language": "en"
+  "language": "en",
+  "description": "A space for ideas, exploration, and growth.",
+  "author": {
+    "name": "Andrew Shell",
+    "givenName": "Andrew",
+    "familyName": "Shell",
+    "jobTitle": "Senior Web Engineer",
+    "homeLocation": "Madison, WI",
+    "email": "andrew@andrewshell.org",
+    "url": "https://blog.andrewshell.org/about/"
+  }
 }

@@ -1,8 +1,12 @@
 import "dotenv/config";
 
+import { DateTime } from "luxon";
 import pluginBacklinks from './plugins/backlinks.js';
 import pluginSyntaxHighlight from '@11ty/eleventy-plugin-syntaxhighlight';
 import rssPlugin from "@11ty/eleventy-plugin-rss";
+import pluginFavicons from "eleventy-plugin-gen-favicons";
+import markdownItAnchor from "markdown-it-anchor";
+import markdownItFootnote from "markdown-it-footnote";
 import { EleventyHtmlBasePlugin } from "@11ty/eleventy";
 
 export default async function (eleventyConfig) {
@@ -12,6 +16,7 @@ export default async function (eleventyConfig) {
 
   eleventyConfig.addPlugin(pluginBacklinks);
   eleventyConfig.addPlugin(EleventyHtmlBasePlugin);
+  eleventyConfig.addPlugin(pluginFavicons);
 
   eleventyConfig.addPlugin(pluginSyntaxHighlight, {
     preAttributes: { tabindex: 0 }
@@ -80,14 +85,20 @@ export default async function (eleventyConfig) {
     });
   });
 
-  eleventyConfig.addCollection("months", function(collectionApi) {
-    let months = new Map();
-    for (let item of collectionApi.getFilteredByTag('essays')) {
-      let slug = DateTime.fromJSDate(item.date, "utc").toFormat("y-LL");
-      let title = DateTime.fromJSDate(item.date, "utc").toFormat("LLLL yyyy");
-      months.set(slug, { slug, title });
-    }
-    return Array.from(months.values());
+  // Customize Markdown library settings:
+  eleventyConfig.amendLibrary("md", mdLib => {
+    mdLib.use(markdownItAnchor, {
+      permalink: markdownItAnchor.permalink.ariaHidden({
+        placement: "after",
+        class: "header-anchor",
+        symbol: "#",
+        ariaHidden: false,
+      }),
+      level: [1,2,3,4],
+      slugify: eleventyConfig.getFilter("slugify")
+    });
+
+    mdLib.use(markdownItFootnote);
   });
 }
 

@@ -19,7 +19,11 @@
     "@11ty/eleventy-plugin-syntaxhighlight": "^5.0.0",
     "@eslint/js": "^9.3.0",
     "dotenv": "^16.4.5",
-    "jsdom": "^24.1.0"
+    "eleventy-plugin-gen-favicons": "^1.1.2",
+    "jsdom": "^24.1.0",
+    "luxon": "^3.4.4",
+    "markdown-it-anchor": "^9.0.1",
+    "markdown-it-footnote": "^4.0.0"
   },
   "repository": {
     "type": "git",

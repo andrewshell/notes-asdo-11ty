@@ -1,6 +1,8 @@
 ---
-layout: layouts/home.njk
+layout: layouts/base.njk
+fullHeader: true
 ---
+{% include "bio.njk" %}
 
 - **Personal Development**
   - [Unified Theory of Goal-Setting](/notes/unified-theory-of-goal-setting/)
@@ -9,5 +11,3 @@ layout: layouts/home.njk
 - **Projects**
   - [Fedwiki River](/notes/fedwiki-river/)
   - [RssCloud Server](/notes/rsscloud-server/)
-- **Sources**
-  - [Book Notes #1](#)
